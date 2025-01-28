@@ -24,18 +24,19 @@ services:
     build: 
       context: .
       dockerfile: docker/vite/Dockerfile
-    command: sh -c "npm install && npm run dev"
     volumes:
       - ./src:/var/www/html:cached
       - node_modules:/var/www/html/node_modules
+      - /var/www/html/node_modules/.vite
     ports:
       - "5173:5173"
     environment:
       - VITE_PORT=5173
       - VITE_HOST=0.0.0.0
-      - HOST=0.0.0.0
-      - CHOKIDAR_USEPOLLING=true
-      - CHOKIDAR_INTERVAL=1000
+      - CHOKIDAR_USEPOLLING=1
+      - CHOKIDAR_INTERVAL=500
+      - FAST_REFRESH=true
+      - WATCHPACK_POLLING=true
     depends_on:
       - app
 

@@ -17,11 +17,17 @@ export default defineConfig({
   server: {
     host: '0.0.0.0',
     hmr: {
-      host: 'localhost'
+      host: 'localhost',
+      protocol: 'ws',
+      timeout: 300
     },
     watch: {
       usePolling: true,
+      interval: 500,
+      followSymlinks: false,
+      ignored: ['**/node_modules/**', '**/vendor/**']
     },
+    cors: true,
     fs: {
       strict: false
     }
